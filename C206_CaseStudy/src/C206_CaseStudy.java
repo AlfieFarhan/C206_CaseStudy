@@ -42,6 +42,8 @@ public class C206_CaseStudy {
 		currencyList.add(CHF);
 		currencyList.add(CAD);
 		
+		System.out.println(String.format("%-10s: SGD$%-10.2f", "Converted Amount", currencyConverter(1000.0, currencyList)));
+		
 		
 	}
 	
@@ -76,34 +78,86 @@ public class C206_CaseStudy {
 		
 	}
 	
-	public static void currencyConverter(double amount, ArrayList<Currency> currencyList) {
+	public static double currencyConverter(double amount, ArrayList<Currency> currencyList) {
 		displaySellOrBuyMenu();
+		double sellCvalue = 0.0;
+		double buyCvalue = 0.0;
+		double convertedAmount = 0.0;
+		String search = "";
+		
 		int option = Helper.readInt("Enter option > ");
 		if (option == 1) {
 			displayConvertMenu();
 			int convertOption = Helper.readInt("Enter option > ");
 			if (convertOption == 1) {
-				String search = Helper.readString("Enter currency to convert from > ");
+				search = Helper.readString("Convert to SGD from > ");
 				for (int i=0;i<currencyList.size();i++) {
 					boolean isSearched = currencyList.get(i).getCname().equals(search);
 					if (isSearched) {
-						double sellCvalue = currencyList.get(i).getSellCvalue();
-						
+						sellCvalue = currencyList.get(i).getSellCvalue();
 					}
 				}
+				convertedAmount = amount*sellCvalue;
+				
+			} else if (convertOption == 2) {
+				search = Helper.readString("Convert from SGD to > ");
+				for (int i=0;i<currencyList.size();i++) {
+					boolean isSearched = currencyList.get(i).getCname().equals(search);
+					if (isSearched) {
+						sellCvalue = currencyList.get(i).getSellCvalue();
+					}
+				}
+				convertedAmount = amount/sellCvalue;
+			} else {
+				System.out.println("Option invalid");
+			}
+		} else if (option == 2) {
+			displayConvertMenu();
+			int convertOption = Helper.readInt("Enter option > ");
+			if (convertOption == 1) {
+				search = Helper.readString("Convert to SGD from > ");
+				for (int i=0;i<currencyList.size();i++) {
+					boolean isSearched = currencyList.get(i).getCname().equals(search);
+					if (isSearched) {
+						buyCvalue = currencyList.get(i).getBuyCvalue();
+					} 
+				}
+				convertedAmount = amount*buyCvalue;
+				
+			} else if (convertOption == 2) {
+				search = Helper.readString("Convert from SGD to > ");
+				for (int i=0;i<currencyList.size();i++) {
+					boolean isSearched = currencyList.get(i).getCname().equals(search);
+					if (isSearched) {
+						buyCvalue = currencyList.get(i).getBuyCvalue();
+					} 
+				}
+				convertedAmount = amount/buyCvalue;
+			} else {
+				System.out.println("Option invalid");
 			}
 		}
+		
+		return convertedAmount;
 		
 	}
 	
 	public static void displaySellOrBuyMenu() {
+		Helper.line(60, "=");
+		System.out.println("Currency Menu");
+		Helper.line(60, "=");
 		System.out.println("1. Sell");
 		System.out.println("2. Buy");
+		Helper.line(60, "=");
 	}
 	
 	public static void displayConvertMenu() {
+		Helper.line(60, "=");
+		System.out.println("Convert Menu");
+		Helper.line(60, "=");
 		System.out.println("1. Convert to SGD");
 		System.out.println("2. Convert from SGD");
+		Helper.line(60, "=");
 	}
 
 }
