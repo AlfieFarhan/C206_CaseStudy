@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;  
+
 
 public class C206_CaseStudy {
 
@@ -47,7 +50,7 @@ public class C206_CaseStudy {
 		currencyList.add(CHF);
 		currencyList.add(CAD);
 		
-		recordTransaction();
+		recordTransaction(currencyList,transactionList);
 		
 		searchRateByCurrency(currencyList, "NZD");
 		
@@ -116,26 +119,47 @@ public class C206_CaseStudy {
 		
 	}
 	
-	
-	public static void recordTransaction() {
+	public static void recordTransaction(ArrayList<Currency> currencyList1,ArrayList<Transaction> transactionList1 ) {
+		LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String text = now.format(formatter);
 		String currencyIn = "";
-		int amt = 0;
+		double amt = 0;
 		String currencyOut = "";
 		String buysellOption = Helper.readString("Enter Type > ");
+		double y = 0;
 		
 		
 		if(buysellOption.equalsIgnoreCase("sell")) {
 			currencyIn = Helper.readString("Enter Currency In > ");
-			amt = Helper.readInt("Enter Amount In > ");
-			currencyOut = Helper.readString("Enter Currency Out >");
+			amt = Helper.readDouble("Enter Amount In > ");
+			currencyOut = Helper.readString("Enter Currency Out > ");
 			
+			for(Currency x: currencyList1) {
+				if(x.getIso().equalsIgnoreCase(currencyOut)) {
+					y = x.getSellRate();
+				}
+			}
 			
+			transactionList1.add(new Transaction(text,buysellOption.toUpperCase(),currencyIn,amt,currencyOut, (amt * y), y));
 			
+			doShowTransactions(transactionList1);
 			
 		}else if(buysellOption.equalsIgnoreCase("buy")) {
 			currencyIn = Helper.readString("Enter Currency In > ");
-			amt = Helper.readInt("Enter Amount In > ");
-			currencyOut = Helper.readString("Enter Currency Out >");
+			amt = Helper.readDouble("Enter Amount In > ");
+			currencyOut = Helper.readString("Enter Currency Out > ");
+			
+			for(int x = 0; x < currencyList1.size(); x++) {
+				if(currencyOut.equalsIgnoreCase(currencyList1.get(x).getIso())) {
+					y = currencyList1.get(x).getBuyRate();
+				}
+			}
+			
+			transactionList1.add(new Transaction(text,buysellOption.toUpperCase(),currencyIn,amt,currencyOut, (amt * y), y));
+			
+			doShowTransactions(transactionList1);
+			
 		}else {
 			System.out.println("Option invalid!");
 		}
@@ -144,7 +168,18 @@ public class C206_CaseStudy {
 	
 	//Used in recordTransaction() method
 	public static void doShowTransactions(ArrayList<Transaction> transactions) {
+		String output = String.format("%-10s %-10s %-10s %-10s %-10s %-10s %-10s", "DATE", "TYPE", "CCY_IN", "AMT_IN", "CCY_OUT", "AMT_OUT","RATE");
 		
+		if(transactions.size() == 0) {
+			System.out.println("Empty ArrayList!");
+			return;
+		}else {
+			for(Transaction x: transactions) {
+				output += String.format("%-30s %-30s %-30s %-30.2f %-30s %-30.2f %-30.4f", x.getDate(), x.getType(), x.getIsoIn(), x.getAmtIn(), x.getIsoOut(), x.getAmtOut(), x.getRate());
+			}
+		}
+		
+		System.out.println(output);
 	}
 	
 	//Liang Han user story ID 3.2

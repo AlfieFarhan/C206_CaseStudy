@@ -17,4 +17,34 @@ public class Transaction {
 		this.amtOut = amtOut;
 		this.rate = rate;
 	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getIsoIn() {
+		return isoIn;
+	}
+
+	public double getAmtIn() {
+		return amtIn;
+	}
+
+	public String getIsoOut() {
+		return isoOut;
+	}
+
+	public double getAmtOut() {
+		return amtOut;
+	}
+
+	public double getRate() {
+		return rate;
+	}
+	
+	
 }
