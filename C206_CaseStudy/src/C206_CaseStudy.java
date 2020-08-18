@@ -127,6 +127,18 @@ public class C206_CaseStudy {
 		}else {
 			System.out.println("Option invalid!");
 		}
+		//Liang Han user story ID 3.2
+		public static void convertCurrencies(ArrayList<Currency> currencyList) {
+			for(int x = 0; x < currencyList.size(); x++) {
+				System.out.println("SGD = " +currencyList.get(x).getSellCvalue());
+			}
+					
+		}
+		// for loop that goes through the currency list
+		// when looping through currency list, use getsellCvalue
+		// display currency rates, eg. 1 sgd = getsellCvalue
+		
+	
 	}
 
 }
