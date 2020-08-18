@@ -1,35 +1,37 @@
 
 public class Currency {
-	private String cname;
-	private double buyCvalue;
-	private double sellCvalue;
+	private String iso;
+	private String currencyName;
+	private double buyRate;
+	private double sellRate;
 	
-	public Currency(String cname, double buyCvalue, double sellCvalue) {
-		this.cname = cname;
-		this.buyCvalue = buyCvalue;
-		this.sellCvalue = sellCvalue;
-	}
-
-	public String getCname() {
-		return cname;
-	}
-
-	public double getBuyCvalue() {
-		return buyCvalue;
-	}
-
-	public double getSellCvalue() {
-		return sellCvalue;
-	}
-
-	public void setBuyCvalue(double buyCvalue) {
-		this.buyCvalue = buyCvalue;
-	}
-
-	public void setSellCvalue(double sellCvalue) {
-		this.sellCvalue = sellCvalue;
+	public Currency(String iso, String currencyName, double buyRate, double sellRate) {
+		this.iso = iso;
+		this.currencyName = currencyName;
+		this.buyRate = buyRate;
+		this.sellRate = sellRate;
 	}
 	
+	public String getIso() {
+		return iso;
+	}
 	
+	public String getCurrencyName() {
+		return currencyName;
+	}
+	
+	public double getBuyRate() {
+		return buyRate;
+	}
+	
+	public double getSellRate() {
+		return sellRate;
+	}
+	
+	public String toString(){
+		// Write your codes here
+		String output = "";
+		return output;
+	}
 	
 }
