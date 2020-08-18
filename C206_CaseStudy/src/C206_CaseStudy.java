@@ -109,5 +109,24 @@ public class C206_CaseStudy {
 		
 	}
 	
+	
+	public static void recordTransaction() {
+		String buysellOption = Helper.readString("Enter Type");
+		String currencyIn = "";
+		int amt = 0;
+		String currencyOut = "";
+		
+		if(buysellOption.equalsIgnoreCase("sell")) {
+			currencyIn = Helper.readString("Enter Currency In");
+			amt = Helper.readInt("Enter Amount In");
+			currencyOut = Helper.readString("Enter Currency Out");
+		}else if(buysellOption.equalsIgnoreCase("buy")) {
+			currencyIn = Helper.readString("Enter Currency In");
+			amt = Helper.readInt("Enter Amount In");
+			currencyOut = Helper.readString("Enter Currency Out");
+		}else {
+			System.out.println("Option invalid!");
+		}
+	}
 
 }
