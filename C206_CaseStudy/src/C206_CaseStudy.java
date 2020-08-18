@@ -6,6 +6,9 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 		ArrayList<MoneyHolding> MoneyHoldingList = new ArrayList<MoneyHolding>();
 		MoneyHoldingList.add(new MoneyHolding("USD", 3500.00));
+		
+		ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
+		
 		ArrayList<Currency> currencyList = new ArrayList<Currency>();
 		Currency MYR = new Currency("MYR","Malaysian Ringgit", 3.06, 3.06);
 		Currency USD = new Currency("USD", "US Dollar", 0.73, 0.73);
@@ -44,7 +47,11 @@ public class C206_CaseStudy {
 		currencyList.add(CHF);
 		currencyList.add(CAD);
 		
+		recordTransaction();
+		
 		searchRateByCurrency(currencyList, "NZD");
+		
+
 		
 		C206_CaseStudy.addMoneyHolding(MoneyHoldingList, inputMoneyHolding() );
 		
@@ -111,22 +118,32 @@ public class C206_CaseStudy {
 	
 	
 	public static void recordTransaction() {
-		String buysellOption = Helper.readString("Enter Type");
 		String currencyIn = "";
 		int amt = 0;
 		String currencyOut = "";
+		String buysellOption = Helper.readString("Enter Type > ");
+		
 		
 		if(buysellOption.equalsIgnoreCase("sell")) {
-			currencyIn = Helper.readString("Enter Currency In");
-			amt = Helper.readInt("Enter Amount In");
-			currencyOut = Helper.readString("Enter Currency Out");
+			currencyIn = Helper.readString("Enter Currency In > ");
+			amt = Helper.readInt("Enter Amount In > ");
+			currencyOut = Helper.readString("Enter Currency Out >");
+			
+			
+			
+			
 		}else if(buysellOption.equalsIgnoreCase("buy")) {
-			currencyIn = Helper.readString("Enter Currency In");
-			amt = Helper.readInt("Enter Amount In");
-			currencyOut = Helper.readString("Enter Currency Out");
+			currencyIn = Helper.readString("Enter Currency In > ");
+			amt = Helper.readInt("Enter Amount In > ");
+			currencyOut = Helper.readString("Enter Currency Out >");
 		}else {
 			System.out.println("Option invalid!");
 		}
+		
+	}
+	
+	//Used in recordTransaction() method
+	public static void doShowTransactions(ArrayList<Transaction> transactions) {
 		
 	}
 	
