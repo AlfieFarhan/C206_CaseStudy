@@ -4,6 +4,7 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		ArrayList<MoneyHolding> MoneyHoldingList = new ArrayList<MoneyHolding>();
 		ArrayList<Currency> currencyList = new ArrayList<Currency>();
 		Currency MYR = new Currency("MYR", 3.06, 3.06);
 		Currency USD = new Currency("USD", 0.73, 0.73);
@@ -45,6 +46,21 @@ public class C206_CaseStudy {
 		System.out.println(String.format("%-10s: SGD$%-10.2f", "Converted Amount", currencyConverter(1000.0, currencyList)));
 		
 		
+	}
+	
+	public static MoneyHolding inputMoneyHolding() {
+		String iso = Helper.readString("Enter ISO Currency > ");
+		double holdingAmt = Helper.readDouble("Enter Holding Amount > ");
+		
+
+		MoneyHolding mh= new MoneyHolding(iso, holdingAmt );
+		return mh;
+		
+	}	
+	public static void addMoneyHolding(ArrayList<MoneyHolding> MoneyHoldingList, MoneyHolding mh) {
+
+		MoneyHoldingList.add(mh);
+		System.out.println("Money holding added");
 	}
 	
 	public static void retrieveCurrency(ArrayList<Currency> currencyList) {
