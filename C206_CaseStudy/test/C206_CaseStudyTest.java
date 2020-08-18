@@ -11,6 +11,8 @@ public class C206_CaseStudyTest {
 	private MoneyHolding mh1;
 	private MoneyHolding mh2;
 	private ArrayList<MoneyHolding> MoneyHoldingList;
+	ArrayList<Currency> currencyList = new ArrayList<Currency>();
+	
 	
 	@Before
 	public void setUp() throws Exception {
@@ -40,6 +42,19 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addMoneyHolding(MoneyHoldingList, mh2);
 		assertEquals("Check that MoneyHolding arraylist size is 2", 2, MoneyHoldingList.size());
 		assertSame("Check that MoneyHolding is added", mh2, MoneyHoldingList.get(1));
+		
+		
+	}
+	public void currencyAdd() {
+		Currency MYR = new Currency("MYR","Malaysian Ringgit", 3.06, 3.06);
+		Currency USD = new Currency("USD", "US Dollar", 0.73, 0.73);
+		currencyList.add(MYR);
+		currencyList.add(USD);
+		C206_CaseStudy.convertCurrencies(currencyList);
+	}
+	
+		
+				
 	}
 
-}
+
