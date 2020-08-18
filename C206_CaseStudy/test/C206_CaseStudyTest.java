@@ -12,7 +12,10 @@ public class C206_CaseStudyTest {
 	private MoneyHolding mh2;
 	private ArrayList<MoneyHolding> MoneyHoldingList;
 	ArrayList<Currency> currencyList = new ArrayList<Currency>();
+	Currency MYR = new Currency("MYR","Malaysian Ringgit", 3.06, 3.06);
+	Currency USD = new Currency("USD", "US Dollar", 0.73, 0.73);
 	
+	ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -46,13 +49,21 @@ public class C206_CaseStudyTest {
 		
 	}
 	public void currencyAdd() {
-		Currency MYR = new Currency("MYR","Malaysian Ringgit", 3.06, 3.06);
-		Currency USD = new Currency("USD", "US Dollar", 0.73, 0.73);
+
 		currencyList.add(MYR);
 		currencyList.add(USD);
 		C206_CaseStudy.convertCurrencies(currencyList);
 	}
 	
+	public void recordTransactions() {
+		currencyList.add(MYR);
+		currencyList.add(USD);
+		//check if currencyList is not empty
+		assertNotNull("Check if currencyList is not empty", currencyList);
+		
+		//check if transactions list given is not empty
+		assertNotNull("Check if transactions list is not empty", transactionList);
+	}
 		
 				
 	}
