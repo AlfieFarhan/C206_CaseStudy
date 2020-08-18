@@ -5,6 +5,7 @@ public class C206_CaseStudy {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<MoneyHolding> MoneyHoldingList = new ArrayList<MoneyHolding>();
+		MoneyHoldingList.add(new MoneyHolding("USD", 3500.00));
 		ArrayList<Currency> currencyList = new ArrayList<Currency>();
 		Currency MYR = new Currency("MYR","Malaysian Ringgit", 3.06, 3.06);
 		Currency USD = new Currency("USD", "US Dollar", 0.73, 0.73);
@@ -44,6 +45,8 @@ public class C206_CaseStudy {
 		currencyList.add(CAD);
 		
 		searchRateByCurrency(currencyList, "NZD");
+		
+		C206_CaseStudy.addMoneyHolding(MoneyHoldingList, inputMoneyHolding() );
 		
 	}
 	
